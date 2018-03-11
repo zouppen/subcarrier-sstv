@@ -7,10 +7,10 @@ cast_audio () {
 }
 
 cast_subcarrier () {
-    ./fm-subcarrier-sstv-tx |
-    jack-stdin system:playback_1 -b 16 -L
+    nice ./fm-subcarrier-sstv-tx |
+    jack-stdin system:playback_1 -b 16 -L -S 192000
 }    
 
-convert "$1" -colorspace RGB -resize "320x240^" -gravity Center -crop 320x240+0+0 -colorspace sRGB png:- |
-    ./pisstv -r 24000 -p r36 -s |
+nice convert "$1" -colorspace RGB -resize "320x240^" -gravity Center -crop 320x240+0+0 -colorspace sRGB png:- |
+    nice ./pisstv -r 24000 -p r36 -s |
     cast_${CAST:-subcarrier}
