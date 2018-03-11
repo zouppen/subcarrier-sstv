@@ -1,0 +1,16 @@
+#!/bin/sh -eu
+#
+# Send given image file using SSTV on a subcarrier
+
+cast_audio () {
+    pacat --format=s16le --rate=24000 --channels=1
+}
+
+cast_subcarrier () {
+    ./fm-subcarrier-sstv-tx |
+    jack-stdin system:playback_1 -b 16 -L
+}    
+
+convert "$1" -colorspace RGB -resize "320x240^" -gravity Center -crop 320x240+0+0 -colorspace sRGB png:- |
+    ./pisstv -r 24000 -p r36 -s |
+    cast_${CAST:-subcarrier}
