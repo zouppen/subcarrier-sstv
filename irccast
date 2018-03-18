@@ -5,7 +5,7 @@ cast_audio () {
 }
 
 cast_subcarrier () {
-    nice ./fm-subcarrier-sstv-tx -f 64 |
+    nice ./fm-subcarrier-sstv-tx -f 64000 |
     jack-stdin system:playback_1 -b 16 -L -S 192000
 }
 
