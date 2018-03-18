@@ -14,5 +14,6 @@ tmpfile=`mktemp --tmpdir tmp.XXXXXXXXXX.raw`
 ln -sf /dev/stdout $tmpfile
 
 stdbuf -oL ssh -T ${1:-irc-source} |
+    sed -ur 's/^/\r/' |
     minimodem --tx-carrier --float-samples -t 100 -R 24000 --ascii -f $tmpfile |
     cast_${CAST:-subcarrier}
