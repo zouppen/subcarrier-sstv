@@ -10,7 +10,7 @@ cast_subcarrier () {
 }
 
 cast_file () {
-    nice ./fm-subcarrier-sstv-tx -f 64 >>/tmp/test.raw
+    nice ./fm-subcarrier-sstv-tx -f 64000 >>/tmp/test.raw
 }
 
 cd "`dirname $0`"
