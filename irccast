@@ -5,12 +5,12 @@ cast_audio () {
 }
 
 cast_subcarrier () {
-    nice ./fm-subcarrier-sstv-tx -f 64000 |
+    nice ./fm-subcarrier-sstv-tx -f 64000 -v 3000 |
     jack-stdin system:playback_1 -b 16 -L -S 192000
 }
 
 cast_file () {
-    nice ./fm-subcarrier-sstv-tx -f 64000 >>/tmp/test.raw
+    nice ./fm-subcarrier-sstv-tx -f 64000 -v 4000 >>/tmp/test.raw
 }
 
 cd "`dirname $0`"
