@@ -9,10 +9,14 @@ cast_subcarrier () {
     jack-stdin system:playback_1 -b 16 -L -S 192000
 }
 
+cast_file () {
+    nice ./fm-subcarrier-sstv-tx -f 64 >>/tmp/test.raw
+}
+
 cd "`dirname $0`"
 tmpfile=`mktemp --tmpdir tmp.XXXXXXXXXX.wav`
 
-ssh -T irc-source | while read -r line; do
+ssh -T ${1:-irc-source} | while read -r line; do
     echo "$line" | minimodem -t 100 -R 24000 --ascii -f $tmpfile
     cast_${CAST:-subcarrier} <$tmpfile
 done
