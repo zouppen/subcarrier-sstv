@@ -1,0 +1,11 @@
+#!/bin/sh -eu
+
+{
+    echo ':radio!irc@fm JOIN #instanssi'
+    echo ':radio!irc@fm JOIN #oh6ad'
+    echo ':radio!irc@fm JOIN #naapurinpoika'
+    echo ':radio!irc@fm JOIN #testitesti'
+    echo ':!proxy NICK :radio'
+    echo ':ircnet.proxy 001 radio :Welcome to the FM radio IRC'
+    stdbuf -o0 minimodem -q 100 --ascii
+} | LC_ALL=C sed -u 's/^.*\r//' | socat - TCP-LISTEN:6667,crlf
