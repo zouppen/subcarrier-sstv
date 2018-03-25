@@ -5,8 +5,7 @@ cast_audio () {
 }
 
 cast_subcarrier () {
-    nice ./fm-subcarrier-raw-tx -f 64000 -v 3000 |
-    jack-stdin system:playback_1 -b 16 -L -S 192000
+    nice ./fm_subcarrier_raw_tx.py -f 64000 -v 3000
 }
 
 cd "`dirname $0`"

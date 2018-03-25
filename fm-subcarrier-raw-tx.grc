@@ -6,7 +6,7 @@
     <key>options</key>
     <param>
       <key>author</key>
-      <value></value>
+      <value>Zouppen</value>
     </param>
     <param>
       <key>window_size</key>
@@ -46,7 +46,7 @@
     </param>
     <param>
       <key>id</key>
-      <value>top_block</value>
+      <value>fm_subcarrier_raw_tx</value>
     </param>
     <param>
       <key>max_nouts</key>
@@ -78,7 +78,7 @@
     </param>
     <param>
       <key>title</key>
-      <value></value>
+      <value>FM subcarrier tx</value>
     </param>
   </block>
   <block>
@@ -93,7 +93,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(48, 84)</value>
+      <value>(48, 92)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -179,57 +179,6 @@
     </param>
   </block>
   <block>
-    <key>blocks_file_sink</key>
-    <param>
-      <key>append</key>
-      <value>False</value>
-    </param>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>file</key>
-      <value>/dev/stdout</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(1016, 276)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_file_sink_0</value>
-    </param>
-    <param>
-      <key>type</key>
-      <value>short</value>
-    </param>
-    <param>
-      <key>unbuffered</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
     <key>blocks_file_source</key>
     <param>
       <key>alias</key>
@@ -253,7 +202,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(336, 68)</value>
+      <value>(360, 68)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -285,7 +234,7 @@
     </param>
   </block>
   <block>
-    <key>blocks_float_to_short</key>
+    <key>blocks_multiply_const_vxx</key>
     <param>
       <key>alias</key>
       <value></value>
@@ -295,16 +244,20 @@
       <value></value>
     </param>
     <param>
+      <key>const</key>
+      <value>volume</value>
+    </param>
+    <param>
       <key>affinity</key>
       <value></value>
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>True</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(840, 292)</value>
+      <value>(832, 292)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -312,7 +265,11 @@
     </param>
     <param>
       <key>id</key>
-      <value>blocks_float_to_short_0</value>
+      <value>blocks_multiply_const_vxx_0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>float</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -323,12 +280,51 @@
       <value>0</value>
     </param>
     <param>
-      <key>scale</key>
-      <value>volume</value>
-    </param>
-    <param>
       <key>vlen</key>
       <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>parameter</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(168, 340)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>device</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>Audio device name</value>
+    </param>
+    <param>
+      <key>short_id</key>
+      <value>n</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>string</value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>subcarrier</value>
     </param>
   </block>
   <block>
@@ -372,6 +368,53 @@
     <param>
       <key>value</key>
       <value>/dev/stdin</value>
+    </param>
+  </block>
+  <block>
+    <key>audio_sink</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>device_name</key>
+      <value>device</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(1008, 284)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>fm_audio</value>
+    </param>
+    <param>
+      <key>num_inputs</key>
+      <value>1</value>
+    </param>
+    <param>
+      <key>ok_to_block</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>samp_rate</key>
+      <value>audio_rate_out</value>
     </param>
   </block>
   <block>
@@ -461,7 +504,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(512, 52)</value>
+      <value>(536, 52)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -571,16 +614,16 @@
     </param>
     <param>
       <key>type</key>
-      <value>long</value>
+      <value>eng_float</value>
     </param>
     <param>
       <key>value</key>
-      <value>8000</value>
+      <value>0.125</value>
     </param>
   </block>
   <connection>
     <source_block_id>blocks_complex_to_real_0</source_block_id>
-    <sink_block_id>blocks_float_to_short_0</sink_block_id>
+    <sink_block_id>blocks_multiply_const_vxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
@@ -591,8 +634,8 @@
     <sink_key>0</sink_key>
   </connection>
   <connection>
-    <source_block_id>blocks_float_to_short_0</source_block_id>
-    <sink_block_id>blocks_file_sink_0</sink_block_id>
+    <source_block_id>blocks_multiply_const_vxx_0</source_block_id>
+    <sink_block_id>fm_audio</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
